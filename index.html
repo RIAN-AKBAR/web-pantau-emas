@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detektor Harga Emas Real-time</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+        
+        .status-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 25px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .status-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            min-width: 280px;
+            transition: transform 0.3s ease;
+        }
+        
+        .status-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .price-container {
+            margin-bottom: 25px;
+        }
+        
+        .current-price {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .currency {
+            color: #7f8c8d;
+            font-size: 1.2rem;
+        }
+        
+        .price-change {
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .positive {
+            background-color: rgba(46, 204, 113, 0.2);
+            color: #27ae60;
+        }
+        
+        .negative {
+            background-color: rgba(231, 76, 60, 0.2);
+            color: #c0392b;
+        }
+        
+        .indicator {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            transition: all 0.5s ease;
+        }
+        
+        .safe {
+            background-color: rgba(46, 204, 113, 0.15);
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .unsafe {
+            background-color: rgba(231, 76, 60, 0.15);
+            border-left: 5px solid #e74c3c;
+        }
+        
+        .indicator-icon {
+            font-size: 2.2rem;
+        }
+        
+        .safe .indicator-icon {
+            color: #27ae60;
+        }
+        
+        .unsafe .indicator-icon {
+            color: #c0392b;
+        }
+        
+        .indicator-text {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .chart-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .chart-title {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .timeframe-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .timeframe-btn {
+            padding: 8px 15px;
+            border: none;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+        }
+        
+        .timeframe-btn.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .timeframe-btn:hover:not(.active) {
+            background-color: #d5dbdb;
+        }
+        
+        .info-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .info-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-list {
+            list-style-type: none;
+        }
+        
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #ecf0f1;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .label {
+            color: #7f8c8d;
+        }
+        
+        .value {
+            font-weight: 600;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .last-update {
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .status-container {
+                flex-direction: column;
+            }
+            
+            .current-price {
+                font-size: 2.2rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .chart-title {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-gem"></i> Detektor Harga Emas</h1>
+            <p class="subtitle">Pantau harga emas real-time dengan indikator keamanan pasar</p>
+        </header>
+        
+        <div class="status-container">
+            <div class="status-card">
+                <div class="price-container">
+                    <div class="label">Harga Emas Saat Ini</div>
+                    <div class="current-price">
+                        <span class="currency">Rp</span> 
+                        <span id="gold-price">1,024,500</span>
+                    </div>
+                    <div class="price-change positive" id="price-change">
+                        <i class="fas fa-arrow-up"></i> Rp 5,200 (+0.51%)
+                    </div>
+                </div>
+                
+                <div class="indicator safe" id="market-indicator">
+                    <div class="indicator-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="indicator-text">Pasar Aman</div>
+                </div>
+                
+                <div class="label" style="margin-top: 15px;">Kondisi pasar aman untuk investasi</div>
+            </div>
+            
+            <div class="status-card">
+                <h3><i class="fas fa-chart-line"></i> Indikator Keamanan</h3>
+                <div class="info-list">
+                    <li>
+                        <span class="label">Volatilitas</span>
+                        <span class="value" id="volatility">Rendah</span>
+                    </li>
+                    <li>
+                        <span class="label">Trend 7 Hari</span>
+                        <span class="value positive" id="trend">Naik</span>
+                    </li>
+                    <li>
+                        <span class="label">Risiko Pasar</span>
+                        <span class="value" id="risk">Rendah</span>
+                    </li>
+                    <li>
+                        <span class="label">Rekomendasi</span>
+                        <span class="value" id="recommendation">Beli</span>
+                    </li>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chart-container">
+            <div class="chart-title">
+                <span>Grafik Harga Emas 7 Hari Terakhir</span>
+                <div class="timeframe-selector">
+                    <button class="timeframe-btn active" onclick="changeTimeframe('week')">7 Hari</button>
+                    <button class="timeframe-btn" onclick="changeTimeframe('month')">30 Hari</button>
+                    <button class="timeframe-btn" onclick="changeTimeframe('3month')">90 Hari</button>
+                </div>
+            </div>
+            <canvas id="goldChart"></canvas>
+        </div>
+        
+        <div class="info-section">
+            <div class="info-card">
+                <h3><i class="fas fa-info-circle"></i> Tentang Indikator</h3>
+                <p>Sistem ini menganalisis berbagai faktor untuk menentukan keamanan pasar emas:</p>
+                <ul class="info-list" style="margin-top: 15px;">
+                    <li>
+                        <span class="label"><i class="fas fa-check-circle safe-icon"></i> Hijau (Aman)</span>
+                        <span class="value">Volatilitas rendah, trend stabil/naik</span>
+                    </li>
+                    <li>
+                        <span class="label"><i class="fas fa-exclamation-circle unsafe-icon"></i> Merah (Tidak Aman)</span>
+                        <span class="value">Volatilitas tinggi, trend turun tajam</span>
+                    </li>
+                </ul>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: #7f8c8d;">
+                    <i class="fas fa-lightbulb"></i> Indikator ini hanya sebagai panduan, selalu lakukan analisis mendalam sebelum berinvestasi.
+                </p>
+            </div>
+            
+            <div class="info-card">
+                <h3><i class="fas fa-history"></i> Riwayat Perubahan</h3>
+                <ul class="info-list">
+                    <li>
+                        <span class="label">Hari ini, 10:30</span>
+                        <span class="value positive">+0.51%</span>
+                    </li>
+                    <li>
+                        <span class="label">Kemarin</span>
+                        <span class="value negative">-0.32%</span>
+                    </li>
+                    <li>
+                        <span class="label">Minggu ini</span>
+                        <span class="value positive">+1.85%</span>
+                    </li>
+                    <li>
+                        <span class="label">Bulan ini</span>
+                        <span class="value positive">+3.42%</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Data harga emas diperbarui setiap 5 menit dari sumber terpercaya</p>
+            <p class="last-update">Terakhir diperbarui: <span id="last-update">Sabtu, 31 Jan 2026 10:30 WIB</span></p>
+            <p style="margin-top: 10px;">© 2026 Detektor Harga Emas. Untuk edukasi investasi.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Data harga emas (simulasi)
+        const goldData = {
+            week: {
+                dates: ['24 Jan', '25 Jan', '26 Jan', '27 Jan', '28 Jan', '29 Jan', '30 Jan', '31 Jan'],
+                prices: [1012000, 1015000, 1018000, 1019500, 1021500, 1019000, 1020300, 1024500],
+                color: '#2ecc71'
+            },
+            month: {
+                dates: ['1 Jan', '5 Jan', '10 Jan', '15 Jan', '20 Jan', '25 Jan', '30 Jan', '31 Jan'],
+                prices: [985000, 995000, 1005000, 1010000, 1018000, 1021000, 1020300, 1024500],
+                color: '#3498db'
+            },
+            '3month': {
+                dates: ['1 Nov', '15 Nov', '1 Des', '15 Des', '1 Jan', '15 Jan', '30 Jan', '31 Jan'],
+                prices: [965000, 970000, 980000, 990000, 985000, 1005000, 1020300, 1024500],
+                color: '#9b59b6'
+            }
+        };
+        
+        // Status pasar - disimulasikan berubah secara acak
+        let marketSafe = true;
+        let chart;
+        let currentTimeframe = 'week';
+        
+        // Inisialisasi grafik
+        function initChart() {
+            const ctx = document.getElementById('goldChart').getContext('2d');
+            
+            // Data awal
+            const data = goldData.week;
+            
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.dates,
+                    datasets: [{
+                        label: 'Harga Emas (Rp/gram)',
+                        data: data.prices,
+                        borderColor: data.color,
+                        backgroundColor: data.color + '20',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            grid: {
+                                color: 'rgba(0,0,0,0.05)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return 'Rp ' + value.toLocaleString('id-ID');
+                                }
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: 'rgba(0,0,0,0.05)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Setel indikator awal
+            updateMarketIndicator();
+        }
+        
+        // Fungsi untuk mengubah timeframe grafik
+        function changeTimeframe(timeframe) {
+            currentTimeframe = timeframe;
+            
+            // Update tombol aktif
+            document.querySelectorAll('.timeframe-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update data grafik
+            const data = goldData[timeframe];
+            chart.data.labels = data.dates;
+            chart.data.datasets[0].data = data.prices;
+            chart.data.datasets[0].borderColor = data.color;
+            chart.data.datasets[0].backgroundColor = data.color + '20';
+            chart.update();
+        }
+        
+        // Fungsi untuk memperbarui indikator pasar
+        function updateMarketIndicator() {
+            const indicator = document.getElementById('market-indicator');
+            const indicatorText = document.querySelector('.indicator-text');
+            const indicatorIcon = document.querySelector('.indicator-icon i');
+            const priceChange = document.getElementById('price-change');
+            const volatility = document.getElementById('volatility');
+            const trend = document.getElementById('trend');
+            const risk = document.getElementById('risk');
+            const recommendation = document.getElementById('recommendation');
+            
+            // Simulasikan perubahan status pasar (80% aman, 20% tidak aman)
+            marketSafe = Math.random() > 0.2;
+            
+            if (marketSafe) {
+                // Status aman
+                indicator.className = 'indicator safe';
+                indicatorText.textContent = 'Pasar Aman';
+                indicatorIcon.className = 'fas fa-shield-alt';
+                document.querySelector('.label[style*="margin-top"]').textContent = 'Kondisi pasar aman untuk investasi';
+                
+                // Update informasi terkait
+                volatility.textContent = 'Rendah';
+                volatility.className = 'value';
+                trend.textContent = 'Naik';
+                trend.className = 'value positive';
+                risk.textContent = 'Rendah';
+                risk.className = 'value';
+                recommendation.textContent = 'Beli';
+                recommendation.className = 'value';
+                
+                // Update harga (simulasi kenaikan kecil)
+                const currentPrice = parseInt(document.getElementById('gold-price').textContent.replace(/,/g, ''));
+                const change = Math.floor(Math.random() * 5000) + 1000;
+                const newPrice = currentPrice + change;
+                const percentChange = (change / currentPrice * 100).toFixed(2);
+                
+                document.getElementById('gold-price').textContent = newPrice.toLocaleString('id-ID');
+                priceChange.innerHTML = `<i class="fas fa-arrow-up"></i> Rp ${change.toLocaleString('id-ID')} (+${percentChange}%)`;
+                priceChange.className = 'price-change positive';
+                
+                // Update warna grafik menjadi hijau
+                goldData[currentTimeframe].color = '#2ecc71';
+                chart.data.datasets[0].borderColor = '#2ecc71';
+                chart.data.datasets[0].backgroundColor = '#2ecc7120';
+                
+            } else {
+                // Status tidak aman
+                indicator.className = 'indicator unsafe';
+                indicatorText.textContent = 'Pasar Tidak Aman';
+                indicatorIcon.className = 'fas fa-exclamation-triangle';
+                document.querySelector('.label[style*="margin-top"]').textContent = 'Hati-hati, volatilitas tinggi terdeteksi';
+                
+                // Update informasi terkait
+                volatility.textContent = 'Tinggi';
+                volatility.className = 'value negative';
+                trend.textContent = 'Turun';
+                trend.className = 'value negative';
+                risk.textContent = 'Tinggi';
+                risk.className = 'value negative';
+                recommendation.textContent = 'Tahan';
+                recommendation.className = 'value negative';
+                
+                // Update harga (simulasi penurunan)
+                const currentPrice = parseInt(document.getElementById('gold-price').textContent.replace(/,/g, ''));
+                const change = Math.floor(Math.random() * 8000) + 2000;
+                const newPrice = currentPrice - change;
+                const percentChange = (change / currentPrice * 100).toFixed(2);
+                
+                document.getElementById('gold-price').textContent = newPrice.toLocaleString('id-ID');
+                priceChange.innerHTML = `<i class="fas fa-arrow-down"></i> Rp ${change.toLocaleString('id-ID')} (-${percentChange}%)`;
+                priceChange.className = 'price-change negative';
+                
+                // Update warna grafik menjadi merah
+                goldData[currentTimeframe].color = '#e74c3c';
+                chart.data.datasets[0].borderColor = '#e74c3c';
+                chart.data.datasets[0].backgroundColor = '#e74c3c20';
+            }
+            
+            chart.update();
+            
+            // Update waktu terakhir pembaruan
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: 'Asia/Jakarta',
+                timeZoneName: 'short'
+            };
+            document.getElementById('last-update').textContent = now.toLocaleDateString('id-ID', options);
+        }
+        
+        // Simulasikan pembaruan data setiap 10 detik
+        setInterval(updateMarketIndicator, 10000);
+        
+        // Inisialisasi saat halaman dimuat
+        window.onload = function() {
+            initChart();
+            
+            // Pembaruan awal
+            updateMarketIndicator();
+        };
+    </script>
+</body>
+</html>
