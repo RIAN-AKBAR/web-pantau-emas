@@ -23,7 +23,7 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
@@ -72,7 +72,7 @@
             margin-bottom: 30px;
         }
         
-        @media (max-width: 992px) {
+        @media (max-width: 1200px) {
             .main-content {
                 grid-template-columns: 1fr;
             }
@@ -383,6 +383,340 @@
             background-color: #00AA13;
             color: white;
         }
+        
+        /* New styles for buy/sell price */
+        .buy-sell-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .price-box {
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .price-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .buy-price-box {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 2px solid #00AA13;
+        }
+        
+        .sell-price-box {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border: 2px solid #e74c3c;
+        }
+        
+        .price-box-title {
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .buy-title {
+            color: #00AA13;
+        }
+        
+        .sell-title {
+            color: #e74c3c;
+        }
+        
+        .price-box-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+        
+        .buy-value {
+            color: #00AA13;
+        }
+        
+        .sell-value {
+            color: #e74c3c;
+        }
+        
+        .price-box-note {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+        
+        .spread-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        
+        .spread-value {
+            font-weight: 700;
+            color: #e67e22;
+        }
+        
+        /* New styles for investment analysis */
+        .investment-form {
+            background-color: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #00AA13;
+            box-shadow: 0 0 0 3px rgba(0, 170, 19, 0.1);
+        }
+        
+        .analysis-result {
+            background-color: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 25px;
+            border-left: 4px solid #00AA13;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .analysis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .analysis-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+        
+        .analysis-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #00AA13;
+            text-align: right;
+        }
+        
+        .analysis-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .detail-item {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .detail-label {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #2c3e50;
+        }
+        
+        .performance-indicator {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 10px;
+        }
+        
+        .performance-positive {
+            background-color: rgba(0, 170, 19, 0.1);
+            color: #00AA13;
+        }
+        
+        .performance-negative {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+        }
+        
+        .performance-neutral {
+            background-color: rgba(127, 140, 141, 0.1);
+            color: #7f8c8d;
+        }
+        
+        .realtime-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background-color: rgba(0, 170, 19, 0.1);
+            color: #00AA13;
+            margin-left: 10px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        .realtime-dot {
+            width: 8px;
+            height: 8px;
+            background-color: #00AA13;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .investment-suggestions {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f5e9;
+            border-radius: 10px;
+            border-left: 4px solid #00AA13;
+        }
+        
+        .suggestion-title {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .suggestion-list {
+            list-style-type: none;
+        }
+        
+        .suggestion-list li {
+            padding: 5px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        
+        .suggestion-list li i {
+            color: #00AA13;
+            margin-top: 3px;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .sell-button {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .sell-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(231, 76, 60, 0.3);
+        }
+        
+        .transaction-history {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 12px;
+        }
+        
+        .history-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .history-table th {
+            background-color: #e9ecef;
+            padding: 12px;
+            text-align: left;
+            color: #495057;
+            font-weight: 600;
+            border-bottom: 2px solid #dee2e6;
+        }
+        
+        .history-table td {
+            padding: 12px;
+            border-bottom: 1px solid #dee2e6;
+            color: #495057;
+        }
+        
+        .history-table tr:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .transaction-buy {
+            color: #00AA13;
+            font-weight: 600;
+        }
+        
+        .transaction-sell {
+            color: #e74c3c;
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -390,7 +724,12 @@
         <header>
             <div class="header-left">
                 <h1><i class="fas fa-chart-line"></i> Pantau Harga Emas Dana</h1>
-                <p>Investasi emas digital yang mudah, aman, dan transparan</p>
+                <p>Investasi emas digital yang mudah, aman, dan transparan 
+                    <span class="realtime-status">
+                        <span class="realtime-dot"></span>
+                        REAL-TIME
+                    </span>
+                </p>
             </div>
             <div class="dana-logo">
                 <span>DANA</span>
@@ -404,8 +743,33 @@
                     <div class="price-tag">LIVE</div>
                 </div>
                 
+                <!-- Harga Jual dan Beli -->
+                <div class="buy-sell-container">
+                    <div class="price-box buy-price-box">
+                        <div class="price-box-title buy-title">
+                            <i class="fas fa-shopping-cart"></i> Harga Beli
+                        </div>
+                        <div class="price-box-value buy-value" id="buy-price-value">Rp 1,025,800</div>
+                        <div class="price-box-note">Harga untuk membeli emas</div>
+                    </div>
+                    
+                    <div class="price-box sell-price-box">
+                        <div class="price-box-title sell-title">
+                            <i class="fas fa-money-bill-wave"></i> Harga Jual
+                        </div>
+                        <div class="price-box-value sell-value" id="sell-price-value">Rp 1,017,100</div>
+                        <div class="price-box-note">Harga untuk menjual emas</div>
+                    </div>
+                </div>
+                
+                <div class="spread-info">
+                    <div class="stat-label">Spread/Perbedaan Harga</div>
+                    <div class="stat-value spread-value" id="spread-value">Rp 8,700 (0.85%)</div>
+                    <div class="price-box-note">Komisi dan biaya transaksi sudah termasuk</div>
+                </div>
+                
                 <div class="current-price">
-                    <div class="price-label">Harga per gram saat ini</div>
+                    <div class="price-label">Harga tengah per gram</div>
                     <div class="price-value">
                         <span class="price-currency">Rp</span>
                         <span id="gold-price">1,021,450</span>
@@ -417,38 +781,103 @@
                 
                 <div class="price-stats">
                     <div class="stat-item">
-                        <div class="stat-label">Harga Tertinggi Hari Ini</div>
-                        <div class="stat-value">Rp 1,024,500</div>
+                        <div class="stat-label">Harga Beli Tertinggi</div>
+                        <div class="stat-value">Rp 1,028,900</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">Harga Terendah Hari Ini</div>
-                        <div class="stat-value">Rp 1,018,200</div>
+                        <div class="stat-label">Harga Jual Terendah</div>
+                        <div class="stat-value">Rp 1,015,300</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-label">Volume Perdagangan</div>
                         <div class="stat-value">1.24 kg</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">Perubahan 7 Hari</div>
-                        <div class="stat-value change-positive">+1.85%</div>
+                        <div class="stat-label">Spread Rata-rata</div>
+                        <div class="stat-value">0.8% - 1.2%</div>
                     </div>
                 </div>
                 
                 <button class="refresh-button" onclick="updateGoldPrice()">
                     <i class="fas fa-sync-alt"></i> Perbarui Harga
                 </button>
+                
+                <!-- Investment Form -->
+                <div class="investment-form">
+                    <h3><i class="fas fa-calculator dana-color"></i> Analisis Investasi Anda</h3>
+                    <div class="form-group">
+                        <label for="investment-amount">Jumlah Investasi (Rp)</label>
+                        <input type="number" id="investment-amount" class="form-control" 
+                               placeholder="Contoh: 1000000" value="1000000" min="10000" step="10000">
+                    </div>
+                    <div class="form-group">
+                        <label for="buy-price-input">Harga Beli Anda per Gram (Rp)</label>
+                        <input type="number" id="buy-price-input" class="form-control" 
+                               placeholder="Contoh: 992450" value="992450" min="100000" step="1000">
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="buy-button" onclick="simulateBuy()">
+                            <i class="fas fa-shopping-cart"></i> Simulasi Beli
+                        </button>
+                        <button class="sell-button" onclick="simulateSell()">
+                            <i class="fas fa-money-bill-wave"></i> Simulasi Jual
+                        </button>
+                    </div>
+                </div>
             </div>
             
             <div class="chart-container">
                 <div class="chart-header">
-                    <h2><i class="fas fa-chart-area dana-color"></i> Perkembangan Harga</h2>
+                    <h2><i class="fas fa-chart-area dana-color"></i> Perkembangan Harga Beli & Jual</h2>
                     <div class="timeframe-selector">
                         <button class="timeframe-btn active" onclick="changeTimeframe('day')">Hari Ini</button>
                         <button class="timeframe-btn" onclick="changeTimeframe('week')">7 Hari</button>
                         <button class="timeframe-btn" onclick="changeTimeframe('month')">30 Hari</button>
+                        <button class="timeframe-btn" onclick="changeTimeframe('year')">1 Tahun</button>
                     </div>
                 </div>
                 <canvas id="goldChart"></canvas>
+                
+                <!-- Investment Analysis Result -->
+                <div class="analysis-result" id="analysis-result" style="display: none;">
+                    <div class="analysis-header">
+                        <div class="analysis-title">Analisis Investasi Anda</div>
+                        <div class="analysis-value" id="investment-profit">+Rp 0</div>
+                    </div>
+                    
+                    <div class="analysis-details" id="analysis-details">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="investment-suggestions">
+                        <div class="suggestion-title"><i class="fas fa-lightbulb dana-color"></i> Saran Investasi:</div>
+                        <ul class="suggestion-list" id="investment-suggestions">
+                            <!-- Will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Transaction History -->
+                <div class="transaction-history">
+                    <div class="history-title">
+                        <i class="fas fa-history dana-color"></i> Riwayat Transaksi Simulasi
+                    </div>
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Tanggal/Waktu</th>
+                                <th>Jenis</th>
+                                <th>Jumlah (Gram)</th>
+                                <th>Harga (Rp/Gram)</th>
+                                <th>Total (Rp)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transaction-history">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         
@@ -458,28 +887,37 @@
                 <div class="investment-info">
                     <div class="investment-item">
                         <span class="item-label">Emas yang Anda Miliki</span>
-                        <span class="item-value">0.85 gram</span>
+                        <span class="item-value" id="user-gold-amount">1.01 gram</span>
                     </div>
                     <div class="investment-item">
-                        <span class="item-label">Nilai Investasi</span>
-                        <span class="item-value">Rp 868,232</span>
+                        <span class="item-label">Nilai Investasi (Harga Jual)</span>
+                        <span class="item-value" id="user-investment-value-sell">Rp 1,028,271</span>
                     </div>
                     <div class="investment-item">
-                        <span class="item-label">Keuntungan/kerugian</span>
-                        <span class="item-value change-positive">+Rp 24,150 (+2.86%)</span>
+                        <span class="item-label">Nilai Investasi (Harga Beli)</span>
+                        <span class="item-value" id="user-investment-value-buy">Rp 1,036,065</span>
                     </div>
                     <div class="investment-item">
-                        <span class="item-label">Rata-rata Beli</span>
-                        <span class="item-value">Rp 992,450/gram</span>
+                        <span class="item-label">Keuntungan/kerugian (jual)</span>
+                        <span class="item-value change-positive" id="user-profit-sell">+Rp 35,821 (+3.61%)</span>
+                    </div>
+                    <div class="investment-item">
+                        <span class="item-label">Spread efektif</span>
+                        <span class="item-value">0.85%</span>
                     </div>
                 </div>
                 
-                <button class="buy-button">
-                    <i class="fas fa-shopping-cart"></i> Beli Emas di Dana
-                </button>
+                <div class="action-buttons">
+                    <button class="buy-button" onclick="buyGold()">
+                        <i class="fas fa-shopping-cart"></i> Beli Emas
+                    </button>
+                    <button class="sell-button" onclick="sellGold()">
+                        <i class="fas fa-money-bill-wave"></i> Jual Emas
+                    </button>
+                </div>
                 
                 <div class="disclaimer">
-                    <strong><i class="fas fa-exclamation-circle"></i> Perhatian:</strong> Harga emas dapat berfluktuasi. Investasi emas memiliki risiko. Harga di atas adalah simulasi untuk keperluan demonstrasi.
+                    <strong><i class="fas fa-exclamation-circle"></i> Perhatian:</strong> Spread adalah perbedaan antara harga beli dan jual. Harga jual selalu lebih rendah dari harga beli. Investasi emas memiliki risiko. Simulasi untuk tujuan edukasi.
                 </div>
             </div>
             
@@ -510,21 +948,33 @@
                         <i class="fas fa-check-circle feature-icon"></i>
                         <span>Dapat diuangkan kapan saja 24/7</span>
                     </li>
+                    <li>
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Spread kompetitif dibanding platform lain</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-check-circle feature-icon"></i>
+                        <span>Transaksi real-time tanpa delay</span>
+                    </li>
                 </ul>
                 
-                <h3 style="margin-top: 25px;"><i class="fas fa-history dana-color"></i> Riwayat Hari Ini</h3>
+                <h3 style="margin-top: 25px;"><i class="fas fa-percentage dana-color"></i> Informasi Spread</h3>
                 <div class="investment-info">
                     <div class="investment-item">
-                        <span class="item-label">Pembukaan</span>
-                        <span class="item-value">Rp 1,018,200</span>
+                        <span class="item-label">Spread DANA saat ini</span>
+                        <span class="item-value">0.85%</span>
                     </div>
                     <div class="investment-item">
-                        <span class="item-label">Tertinggi</span>
-                        <span class="item-value">Rp 1,024,500</span>
+                        <span class="item-label">Rata-rata industri</span>
+                        <span class="item-value">1.2% - 2.5%</span>
                     </div>
                     <div class="investment-item">
-                        <span class="item-label">Terendah</span>
-                        <span class="item-value">Rp 1,017,800</span>
+                        <span class="item-label">Minimal investasi</span>
+                        <span class="item-value">Rp 10,000</span>
+                    </div>
+                    <div class="investment-item">
+                        <span class="item-label">Biaya penarikan</span>
+                        <span class="item-value">Rp 0</span>
                     </div>
                 </div>
             </div>
@@ -533,7 +983,7 @@
         <footer>
             <p>Informasi harga diperbarui setiap 5 menit dari platform DANA</p>
             <p class="last-update">Terakhir diperbarui: <span id="last-update">Sabtu, 31 Jan 2026 14:45 WIB</span></p>
-            <p style="margin-top: 10px;">Website ini bukan bagian resmi dari DANA. Harga simulasi untuk tujuan edukasi.</p>
+            <p style="margin-top: 10px;">Website ini bukan bagian resmi dari DANA. Harga simulasi untuk tujuan edukasi. Spread dapat berubah sewaktu-waktu.</p>
         </footer>
     </div>
 
@@ -543,26 +993,49 @@
             day: {
                 labels: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'],
                 prices: [1018200, 1019500, 1021200, 1023000, 1024500, 1023200, 1021500, 1021450],
+                buyPrices: [1021500, 1022800, 1024500, 1026300, 1027800, 1026500, 1024800, 1025800],
+                sellPrices: [1014900, 1016200, 1017900, 1019700, 1021200, 1019900, 1018200, 1017100],
                 color: '#00AA13',
                 timeframe: 'Hari Ini'
             },
             week: {
                 labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min', 'Hari Ini'],
                 prices: [1005000, 1008000, 1012000, 1015000, 1018000, 1020000, 1019500, 1021450],
+                buyPrices: [1008300, 1011300, 1015300, 1018300, 1021300, 1023300, 1022800, 1025800],
+                sellPrices: [1001700, 1004700, 1008700, 1011700, 1014700, 1016700, 1016200, 1017100],
                 color: '#3498db',
                 timeframe: '7 Hari Terakhir'
             },
             month: {
                 labels: ['Minggu 1', 'Minggu 2', 'Minggu 3', 'Minggu 4', 'Minggu 5', 'Hari Ini'],
                 prices: [985000, 995000, 1005000, 1010000, 1018000, 1021450],
+                buyPrices: [988000, 998000, 1008000, 1013000, 1021000, 1025800],
+                sellPrices: [982000, 992000, 1002000, 1007000, 1015000, 1017100],
                 color: '#9b59b6',
                 timeframe: '30 Hari Terakhir'
+            },
+            year: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
+                prices: [950000, 960000, 970000, 980000, 985000, 990000, 995000, 1000000, 1005000, 1010000, 1015000, 1021450],
+                buyPrices: [953000, 963000, 973000, 983000, 988000, 993000, 998000, 1003000, 1008000, 1013000, 1018000, 1025800],
+                sellPrices: [947000, 957000, 967000, 977000, 982000, 987000, 992000, 997000, 1002000, 1007000, 1012000, 1017100],
+                color: '#e67e22',
+                timeframe: '1 Tahun Terakhir'
             }
         };
         
         let chart;
         let currentTimeframe = 'day';
         let currentPrice = 1021450;
+        let buyPrice = 1025800;
+        let sellPrice = 1017100;
+        let spread = buyPrice - sellPrice;
+        let spreadPercentage = (spread / currentPrice * 100).toFixed(2);
+        
+        let userInvestment = 1000000;
+        let userBuyPrice = 992450;
+        let userGoldAmount = userInvestment / userBuyPrice;
+        let transactionHistory = [];
         
         // Inisialisasi grafik
         function initChart() {
@@ -575,19 +1048,48 @@
                 type: 'line',
                 data: {
                     labels: data.labels,
-                    datasets: [{
-                        label: `Harga Emas Dana (${data.timeframe})`,
-                        data: data.prices,
-                        borderColor: data.color,
-                        backgroundColor: data.color + '20',
-                        borderWidth: 3,
-                        fill: true,
-                        tension: 0.4,
-                        pointBackgroundColor: data.color,
-                        pointBorderColor: '#ffffff',
-                        pointBorderWidth: 2,
-                        pointRadius: 5
-                    }]
+                    datasets: [
+                        {
+                            label: `Harga Beli`,
+                            data: data.buyPrices,
+                            borderColor: '#00AA13',
+                            backgroundColor: '#00AA1320',
+                            borderWidth: 3,
+                            fill: false,
+                            tension: 0.4,
+                            pointBackgroundColor: '#00AA13',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        },
+                        {
+                            label: `Harga Jual`,
+                            data: data.sellPrices,
+                            borderColor: '#e74c3c',
+                            backgroundColor: '#e74c3c20',
+                            borderWidth: 3,
+                            fill: false,
+                            tension: 0.4,
+                            pointBackgroundColor: '#e74c3c',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 4
+                        },
+                        {
+                            label: `Harga Tengah`,
+                            data: data.prices,
+                            borderColor: '#3498db',
+                            backgroundColor: '#3498db20',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.4,
+                            pointBackgroundColor: '#3498db',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
+                            pointRadius: 3,
+                            borderDash: [5, 5]
+                        }
+                    ]
                 },
                 options: {
                     responsive: true,
@@ -599,7 +1101,7 @@
                         tooltip: {
                             callbacks: {
                                 label: function(context) {
-                                    return `Rp ${context.parsed.y.toLocaleString('id-ID')}`;
+                                    return `${context.dataset.label}: Rp ${context.parsed.y.toLocaleString('id-ID')}`;
                                 }
                             }
                         }
@@ -626,6 +1128,9 @@
             });
             
             updateLastUpdateTime();
+            updateBuySellPrices();
+            analyzeInvestment(); // Analisis investasi awal
+            loadTransactionHistory();
         }
         
         // Fungsi untuk mengubah timeframe grafik
@@ -641,11 +1146,303 @@
             // Update data grafik
             const data = goldData[timeframe];
             chart.data.labels = data.labels;
-            chart.data.datasets[0].data = data.prices;
-            chart.data.datasets[0].borderColor = data.color;
-            chart.data.datasets[0].backgroundColor = data.color + '20';
-            chart.data.datasets[0].label = `Harga Emas Dana (${data.timeframe})`;
+            chart.data.datasets[0].data = data.buyPrices;
+            chart.data.datasets[1].data = data.sellPrices;
+            chart.data.datasets[2].data = data.prices;
             chart.update();
+        }
+        
+        // Fungsi untuk update harga beli dan jual
+        function updateBuySellPrices() {
+            // Update tampilan harga
+            document.getElementById('buy-price-value').textContent = `Rp ${buyPrice.toLocaleString('id-ID')}`;
+            document.getElementById('sell-price-value').textContent = `Rp ${sellPrice.toLocaleString('id-ID')}`;
+            
+            // Update spread
+            const spreadElement = document.getElementById('spread-value');
+            spreadElement.textContent = `Rp ${spread.toLocaleString('id-ID')} (${spreadPercentage}%)`;
+        }
+        
+        // Fungsi untuk menganalisis investasi
+        function analyzeInvestment() {
+            // Ambil nilai dari form
+            userInvestment = parseInt(document.getElementById('investment-amount').value) || 1000000;
+            userBuyPrice = parseInt(document.getElementById('buy-price-input').value) || 992450;
+            
+            // Hitung jumlah emas yang didapat
+            userGoldAmount = userInvestment / userBuyPrice;
+            
+            // Hitung nilai investasi saat ini berdasarkan harga jual dan beli
+            const currentValueSell = userGoldAmount * sellPrice;
+            const currentValueBuy = userGoldAmount * buyPrice;
+            
+            // Hitung keuntungan/kerugian berdasarkan harga jual (realisasi)
+            const profitSell = currentValueSell - userInvestment;
+            const profitPercentSell = (profitSell / userInvestment) * 100;
+            
+            // Tampilkan hasil analisis
+            document.getElementById('analysis-result').style.display = 'block';
+            
+            // Update nilai keuntungan
+            const profitElement = document.getElementById('investment-profit');
+            if (profitSell > 0) {
+                profitElement.innerHTML = `+Rp ${Math.abs(profitSell).toLocaleString('id-ID')}`;
+                profitElement.style.color = '#00AA13';
+            } else if (profitSell < 0) {
+                profitElement.innerHTML = `-Rp ${Math.abs(profitSell).toLocaleString('id-ID')}`;
+                profitElement.style.color = '#e74c3c';
+            } else {
+                profitElement.innerHTML = `Rp 0`;
+                profitElement.style.color = '#7f8c8d';
+            }
+            
+            // Update detail analisis
+            const analysisDetails = document.getElementById('analysis-details');
+            analysisDetails.innerHTML = `
+                <div class="detail-item">
+                    <div class="detail-label">Jumlah Emas</div>
+                    <div class="detail-value">${userGoldAmount.toFixed(4)} gram</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Modal Investasi</div>
+                    <div class="detail-value">Rp ${userInvestment.toLocaleString('id-ID')}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Nilai Saat Ini (Jual)</div>
+                    <div class="detail-value">Rp ${currentValueSell.toLocaleString('id-ID')}</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Keuntungan/Rugi (Jual)</div>
+                    <div class="detail-value">
+                        ${profitSell > 0 ? '+' : ''}Rp ${Math.abs(profitSell).toLocaleString('id-ID')}
+                        <span class="performance-indicator ${profitSell > 0 ? 'performance-positive' : profitSell < 0 ? 'performance-negative' : 'performance-neutral'}">
+                            ${profitSell > 0 ? '+' : ''}${profitPercentSell.toFixed(2)}%
+                        </span>
+                    </div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Spread Efektif</div>
+                    <div class="detail-value">${spreadPercentage}%</div>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-label">Break-even Price</div>
+                    <div class="detail-value">Rp ${(userBuyPrice * 1.0085).toLocaleString('id-ID')}</div>
+                </div>
+            `;
+            
+            // Update informasi investasi pengguna
+            document.getElementById('user-gold-amount').textContent = `${userGoldAmount.toFixed(2)} gram`;
+            document.getElementById('user-investment-value-sell').textContent = `Rp ${currentValueSell.toLocaleString('id-ID')}`;
+            document.getElementById('user-investment-value-buy').textContent = `Rp ${currentValueBuy.toLocaleString('id-ID')}`;
+            
+            const userProfitElement = document.getElementById('user-profit-sell');
+            if (profitSell > 0) {
+                userProfitElement.innerHTML = `+Rp ${Math.abs(profitSell).toLocaleString('id-ID')} (+${profitPercentSell.toFixed(2)}%)`;
+                userProfitElement.className = 'item-value change-positive';
+            } else if (profitSell < 0) {
+                userProfitElement.innerHTML = `-Rp ${Math.abs(profitSell).toLocaleString('id-ID')} (-${Math.abs(profitPercentSell).toFixed(2)}%)`;
+                userProfitElement.className = 'item-value change-negative';
+            } else {
+                userProfitElement.innerHTML = `Rp 0 (0.00%)`;
+                userProfitElement.className = 'item-value change-neutral';
+            }
+            
+            // Berikan saran investasi
+            const suggestionsElement = document.getElementById('investment-suggestions');
+            let suggestions = '';
+            
+            const breakEvenPrice = userBuyPrice * 1.0085; // Harga break-even dengan spread
+            const currentSellPrice = sellPrice;
+            
+            if (currentSellPrice > breakEvenPrice * 1.05) {
+                suggestions = `
+                    <li><i class="fas fa-check-circle"></i> Keuntungan signifikan, pertimbangkan jual sebagian</li>
+                    <li><i class="fas fa-check-circle"></i> Spread rendah (${spreadPercentage}%), kondisi baik untuk transaksi</li>
+                    <li><i class="fas fa-check-circle"></i> Pertimbangkan average down jika ada koreksi harga</li>
+                `;
+            } else if (currentSellPrice > breakEvenPrice) {
+                suggestions = `
+                    <li><i class="fas fa-check-circle"></i> Sedang untung, pertimbangkan untuk menahan</li>
+                    <li><i class="fas fa-check-circle"></i> Spread normal (${spreadPercentage}%), transaksi efisien</li>
+                    <li><i class="fas fa-check-circle"></i> Pantau support level untuk keputusan jual</li>
+                `;
+            } else if (currentSellPrice > breakEvenPrice * 0.95) {
+                suggestions = `
+                    <li><i class="fas fa-exclamation-triangle"></i> Mendekati break-even, pertimbangkan untuk average down</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Spread ${spreadPercentage}%, termasuk normal</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Tunggu harga naik di atas break-even sebelum jual</li>
+                `;
+            } else {
+                suggestions = `
+                    <li><i class="fas fa-exclamation-triangle"></i> Kerugian karena spread, jangan jual sekarang</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Pertimbangkan average down untuk mengurangi biaya rata-rata</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> Emas jangka panjang cenderung naik, pertimbangkan hold</li>
+                `;
+            }
+            
+            suggestionsElement.innerHTML = suggestions;
+        }
+        
+        // Fungsi untuk simulasi pembelian
+        function simulateBuy() {
+            const investmentAmount = parseInt(document.getElementById('investment-amount').value) || 1000000;
+            const goldAmount = investmentAmount / buyPrice;
+            
+            // Tambahkan ke riwayat transaksi
+            const transaction = {
+                id: Date.now(),
+                type: 'BELI',
+                date: new Date(),
+                amount: goldAmount,
+                price: buyPrice,
+                total: investmentAmount
+            };
+            
+            transactionHistory.unshift(transaction);
+            saveTransactionHistory();
+            updateTransactionHistory();
+            
+            alert(`Simulasi Pembelian Berhasil!\n\nAnda membeli: ${goldAmount.toFixed(4)} gram\nHarga beli: Rp ${buyPrice.toLocaleString('id-ID')}/gram\nTotal: Rp ${investmentAmount.toLocaleString('id-ID')}\n\nTransaksi telah ditambahkan ke riwayat.`);
+            
+            analyzeInvestment();
+        }
+        
+        // Fungsi untuk simulasi penjualan
+        function simulateSell() {
+            if (userGoldAmount <= 0) {
+                alert('Anda tidak memiliki emas untuk dijual!');
+                return;
+            }
+            
+            const sellAmount = userGoldAmount; // Jual semua
+            const totalReceived = sellAmount * sellPrice;
+            
+            // Tambahkan ke riwayat transaksi
+            const transaction = {
+                id: Date.now(),
+                type: 'JUAL',
+                date: new Date(),
+                amount: sellAmount,
+                price: sellPrice,
+                total: totalReceived
+            };
+            
+            transactionHistory.unshift(transaction);
+            saveTransactionHistory();
+            updateTransactionHistory();
+            
+            const profit = totalReceived - userInvestment;
+            const profitPercent = (profit / userInvestment) * 100;
+            
+            alert(`Simulasi Penjualan Berhasil!\n\nAnda menjual: ${sellAmount.toFixed(4)} gram\nHarga jual: Rp ${sellPrice.toLocaleString('id-ID')}/gram\nTotal diterima: Rp ${totalReceived.toLocaleString('id-ID')}\n\nKeuntungan/Rugi: ${profit > 0 ? '+' : ''}Rp ${Math.abs(profit).toLocaleString('id-ID')} (${profit > 0 ? '+' : ''}${profitPercent.toFixed(2)}%)\n\nTransaksi telah ditambahkan ke riwayat.`);
+            
+            analyzeInvestment();
+        }
+        
+        // Fungsi untuk membeli emas (aksi utama)
+        function buyGold() {
+            alert(`Anda akan diarahkan ke aplikasi DANA untuk membeli emas.\n\nHarga beli saat ini: Rp ${buyPrice.toLocaleString('id-ID')}/gram\n\nSetelah transaksi, harga beli Anda akan disimpan untuk analisis.`);
+        }
+        
+        // Fungsi untuk menjual emas (aksi utama)
+        function sellGold() {
+            alert(`Anda akan diarahkan ke aplikasi DANA untuk menjual emas.\n\nHarga jual saat ini: Rp ${sellPrice.toLocaleString('id-ID')}/gram\n\nPastikan Anda sudah login ke aplikasi DANA.`);
+        }
+        
+        // Fungsi untuk menyimpan riwayat transaksi
+        function saveTransactionHistory() {
+            localStorage.setItem('goldTransactionHistory', JSON.stringify(transactionHistory));
+        }
+        
+        // Fungsi untuk memuat riwayat transaksi
+        function loadTransactionHistory() {
+            const savedHistory = localStorage.getItem('goldTransactionHistory');
+            if (savedHistory) {
+                transactionHistory = JSON.parse(savedHistory);
+                // Konversi string date kembali ke Date object
+                transactionHistory.forEach(transaction => {
+                    transaction.date = new Date(transaction.date);
+                });
+            }
+            updateTransactionHistory();
+        }
+        
+        // Fungsi untuk memperbarui tampilan riwayat transaksi
+        function updateTransactionHistory() {
+            const historyBody = document.getElementById('transaction-history');
+            historyBody.innerHTML = '';
+            
+            if (transactionHistory.length === 0) {
+                historyBody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #7f8c8d;">
+                            <i class="fas fa-history"></i> Belum ada transaksi
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            // Tampilkan maksimal 5 transaksi terbaru
+            const recentTransactions = transactionHistory.slice(0, 5);
+            
+            recentTransactions.forEach(transaction => {
+                const row = document.createElement('tr');
+                const dateStr = transaction.date.toLocaleDateString('id-ID', {
+                    day: '2-digit',
+                    month: 'short',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                
+                row.innerHTML = `
+                    <td>${dateStr}</td>
+                    <td><span class="transaction-${transaction.type.toLowerCase()}">${transaction.type}</span></td>
+                    <td>${transaction.amount.toFixed(4)}</td>
+                    <td>Rp ${transaction.price.toLocaleString('id-ID')}</td>
+                    <td>Rp ${transaction.total.toLocaleString('id-ID')}</td>
+                `;
+                
+                historyBody.appendChild(row);
+            });
+            
+            // Tambahkan baris untuk total jika ada lebih dari 1 transaksi
+            if (transactionHistory.length > 1) {
+                const totalBuy = transactionHistory
+                    .filter(t => t.type === 'BELI')
+                    .reduce((sum, t) => sum + t.total, 0);
+                    
+                const totalSell = transactionHistory
+                    .filter(t => t.type === 'JUAL')
+                    .reduce((sum, t) => sum + t.total, 0);
+                
+                const totalGoldBought = transactionHistory
+                    .filter(t => t.type === 'BELI')
+                    .reduce((sum, t) => sum + t.amount, 0);
+                    
+                const totalGoldSold = transactionHistory
+                    .filter(t => t.type === 'JUAL')
+                    .reduce((sum, t) => sum + t.amount, 0);
+                
+                const netGold = totalGoldBought - totalGoldSold;
+                const netCash = totalSell - totalBuy;
+                
+                const summaryRow = document.createElement('tr');
+                summaryRow.style.backgroundColor = '#f8f9fa';
+                summaryRow.style.fontWeight = '600';
+                
+                summaryRow.innerHTML = `
+                    <td colspan="2">TOTAL</td>
+                    <td>${netGold.toFixed(4)} gram</td>
+                    <td>Net</td>
+                    <td class="${netCash >= 0 ? 'transaction-buy' : 'transaction-sell'}">
+                        ${netCash >= 0 ? '+' : ''}Rp ${Math.abs(netCash).toLocaleString('id-ID')}
+                    </td>
+                `;
+                
+                historyBody.appendChild(summaryRow);
+            }
         }
         
         // Fungsi untuk memperbarui harga emas
@@ -655,8 +1452,22 @@
             const changeAmount = Math.round(currentPrice * changePercent / 100);
             const newPrice = currentPrice + changeAmount;
             
-            // Update harga saat ini
-            document.getElementById('gold-price').textContent = newPrice.toLocaleString('id-ID');
+            // Update harga beli dan jual dengan spread tetap
+            const newBuyPrice = Math.round(newPrice * 1.0085);
+            const newSellPrice = Math.round(newPrice * 0.9915);
+            const newSpread = newBuyPrice - newSellPrice;
+            const newSpreadPercentage = (newSpread / newPrice * 100).toFixed(2);
+            
+            // Update variabel global
+            currentPrice = newPrice;
+            buyPrice = newBuyPrice;
+            sellPrice = newSellPrice;
+            spread = newSpread;
+            spreadPercentage = newSpreadPercentage;
+            
+            // Update tampilan harga
+            document.getElementById('gold-price').textContent = currentPrice.toLocaleString('id-ID');
+            updateBuySellPrices();
             
             // Update perubahan harga
             const priceChangeElement = document.getElementById('price-change');
@@ -685,28 +1496,36 @@
                 if (data.labels.length >= 12) {
                     data.labels.shift();
                     data.prices.shift();
+                    data.buyPrices.shift();
+                    data.sellPrices.shift();
                 }
                 
                 data.labels.push(timeLabel);
-                data.prices.push(newPrice);
+                data.prices.push(currentPrice);
+                data.buyPrices.push(buyPrice);
+                data.sellPrices.push(sellPrice);
             } else {
                 // Untuk timeframe lain, perbarui titik terakhir
-                data.prices[data.prices.length - 1] = newPrice;
+                data.prices[data.prices.length - 1] = currentPrice;
+                data.buyPrices[data.buyPrices.length - 1] = buyPrice;
+                data.sellPrices[data.sellPrices.length - 1] = sellPrice;
             }
             
             // Update grafik
             chart.data.labels = data.labels;
-            chart.data.datasets[0].data = data.prices;
+            chart.data.datasets[0].data = data.buyPrices;
+            chart.data.datasets[1].data = data.sellPrices;
+            chart.data.datasets[2].data = data.prices;
             chart.update();
             
-            // Update harga saat ini
-            currentPrice = newPrice;
-            
             // Update statistik
-            updateStats(newPrice);
+            updateStats(currentPrice);
             
             // Update waktu terakhir pembaruan
             updateLastUpdateTime();
+            
+            // Analisis ulang investasi dengan harga baru
+            analyzeInvestment();
             
             // Berikan feedback visual
             const refreshBtn = event.target;
@@ -725,8 +1544,8 @@
         // Fungsi untuk memperbarui statistik
         function updateStats(newPrice) {
             // Simulasi update statistik
-            const highPrice = Math.max(newPrice, 1024500);
-            const lowPrice = Math.min(newPrice, 1017800);
+            const highBuyPrice = Math.max(buyPrice, 1028900);
+            const lowSellPrice = Math.min(sellPrice, 1015300);
             
             // Update volume perdagangan (random)
             const volume = (Math.random() * 0.5 + 1.0).toFixed(2);
@@ -734,11 +1553,11 @@
             // Update elemen statistik jika ada
             const statElements = document.querySelectorAll('.stat-value');
             if (statElements.length >= 4) {
-                // Harga tertinggi
-                statElements[0].textContent = `Rp ${highPrice.toLocaleString('id-ID')}`;
+                // Harga beli tertinggi
+                statElements[0].textContent = `Rp ${highBuyPrice.toLocaleString('id-ID')}`;
                 
-                // Harga terendah
-                statElements[1].textContent = `Rp ${lowPrice.toLocaleString('id-ID')}`;
+                // Harga jual terendah
+                statElements[1].textContent = `Rp ${lowSellPrice.toLocaleString('id-ID')}`;
                 
                 // Volume perdagangan
                 statElements[2].textContent = `${volume} kg`;
@@ -761,13 +1580,47 @@
             document.getElementById('last-update').textContent = now.toLocaleDateString('id-ID', options);
         }
         
-        // Simulasikan pembaruan harga otomatis setiap 30 detik
+        // Simulasikan pembaruan harga otomatis setiap 10 detik untuk efek real-time
         setInterval(() => {
             // Hanya update otomatis jika halaman aktif
             if (!document.hidden) {
-                updateGoldPrice();
+                // Update harga dengan perubahan kecil
+                const changePercent = (Math.random() * 0.3) - 0.15; // Perubahan lebih kecil
+                const changeAmount = Math.round(currentPrice * changePercent / 100);
+                currentPrice = currentPrice + changeAmount;
+                
+                // Update harga beli dan jual
+                buyPrice = Math.round(currentPrice * 1.0085);
+                sellPrice = Math.round(currentPrice * 0.9915);
+                spread = buyPrice - sellPrice;
+                spreadPercentage = (spread / currentPrice * 100).toFixed(2);
+                
+                // Update tampilan
+                document.getElementById('gold-price').textContent = currentPrice.toLocaleString('id-ID');
+                updateBuySellPrices();
+                updateLastUpdateTime();
+                analyzeInvestment();
+                
+                // Update grafik secara real-time untuk timeframe hari ini
+                if (currentTimeframe === 'day') {
+                    const data = goldData.day;
+                    const now = new Date();
+                    const timeLabel = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+                    
+                    // Update titik terakhir
+                    data.prices[data.prices.length - 1] = currentPrice;
+                    data.buyPrices[data.buyPrices.length - 1] = buyPrice;
+                    data.sellPrices[data.sellPrices.length - 1] = sellPrice;
+                    data.labels[data.labels.length - 1] = timeLabel;
+                    
+                    chart.data.labels = data.labels;
+                    chart.data.datasets[0].data = data.buyPrices;
+                    chart.data.datasets[1].data = data.sellPrices;
+                    chart.data.datasets[2].data = data.prices;
+                    chart.update();
+                }
             }
-        }, 30000);
+        }, 10000);
         
         // Inisialisasi saat halaman dimuat
         window.onload = function() {
@@ -775,12 +1628,16 @@
             
             // Set interval untuk update waktu setiap detik
             setInterval(updateLastUpdateTime, 1000);
+            
+            // Auto-update harga pertama kali setelah 2 detik
+            setTimeout(() => {
+                updateGoldPrice();
+            }, 2000);
         };
         
-        // Tambahkan event listener untuk klik tombol beli
-        document.querySelector('.buy-button').addEventListener('click', function() {
-            alert('Anda akan diarahkan ke aplikasi DANA untuk membeli emas. Harga saat ini: Rp ' + currentPrice.toLocaleString('id-ID') + '/gram');
-        });
+        // Event listener untuk input investment
+        document.getElementById('investment-amount').addEventListener('change', analyzeInvestment);
+        document.getElementById('buy-price-input').addEventListener('change', analyzeInvestment);
     </script>
 </body>
 </html>
